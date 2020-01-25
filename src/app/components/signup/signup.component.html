@@ -1,0 +1,204 @@
+<div class="container-fluid pt-15"
+    style="background-image: linear-gradient(to right, #4186f5 0%, #5cc9fc 51%, #a7c7fa 100%);">
+    <div class="container pt-4">
+        <div class="row justify-content-center mt-4 pb-4">
+            <div class="col-md-6 col-sm-12 col-lg-6 w-100 p-3 text-white text-center"
+                style="height:480px;background-color: rgb(7, 14, 77);padding: 40px;">
+                <span *ngIf="category.student">
+                    <h1 class=".text-positioning"> A world class education for anyone,
+                        anywhere. 100% free.</h1>
+                </span>
+                <span *ngIf="category.lecturer">
+                    <h1 class=".text-positioning"> Help every student succeed with personalized practice. 100% free.
+                    </h1>
+                    <div class="d-none d-lg-block text-center">
+                        <ul>
+                            <li>Find standards-aligned content</li>
+                            <li>Assign practice exercises, videos and articles</li>
+                            <li>Track student progress</li>
+                            <li>Join millions of teachers and students</li>
+                        </ul>
+                    </div>
+                </span>
+                <span *ngIf="category.sponsor">
+                    <h1 class=".text-positioning"> First, create your parent account.
+                    </h1>
+                    <div class="d-none d-lg-block">
+                        <p>After that, we'll take you through creating an account for your child.</p>
+                        <p>Khan Academy is a great way for your child to get help with what they’re learning in
+                            school or to learn something completely new.</p>
+                    </div>
+                </span>
+                <p class="text-center">By signing up for PaveWay Academy, you agree to our <a href="">Terms of
+                        use</a>
+                    and <a href=""> Privacy Policy</a>.</p>
+                <!-- <span *ngIf="category.sponsor">
+                    <h1 class=".text-positioning"> A world class education for anyone,
+                        anywhere. 100% free.</h1>
+                    <p class="text-center">
+                        <div class=".hidden-sm-down">
+                            <p>After that, we'll take you through creating an account for your child.</p>
+                            <p>Khan Academy is a great way for your child to get help with what they’re learning in
+                                school or to learn something completely new.</p>
+                        </div>
+                        By signing up for PaveWay Academy, you agree to our <a href="">Terms of
+                            use</a>
+                        and <a href=""> Privacy Policy</a>.
+                    </p>
+                </span> -->
+            </div>
+            <div class="col-md-6 col-sm-12 col-lg-6 w-100 p-3" style="background-color: rgb(231, 233, 245);">
+
+                <div class="btn-group btn-group-lg btn-block" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn btn-outline-primary" [class.active]="category.student"
+                        aria-pressed="true" (click)="chooseCat('student')">Student</button>
+                    <button type="button" class="btn btn btn-outline-primary" [class.active]="category.lecturer"
+                        (click)="chooseCat('lecturer')">Lecturer</button>
+                    <button type="button" class="btn btn btn-outline-primary" [class.active]="category.sponsor"
+                        (click)="chooseCat('sponsor')">Sponsor</button>
+                </div>
+
+                <form class="mt-4" #signup="ngForm" (ngSubmit)=onSubmit(signup) [mustMatch]="['password', 'confirm_password']">
+                    <input type="hidden" name="role" #userRole="ngModel" [(ngModel)]="user.role" required>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="">Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="border-color: rgb(13, 141, 226);"
+                                        id="basic-addon1">@</span>
+                                </div>
+                                <input type="email" class="form-control" name="email" placeholder="email"
+                                    aria-label="Email" aria-describedby="basic-addon1" #userEmail="ngModel"
+                                    [(ngModel)]="user.email"
+                                    [ngClass]="{'is-invalid': userEmail.errors && userEmail.touched}" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+
+                                <div [hidden]="!userEmail.errors?.required" class="invalid-feedback">Email field is required
+                                </div>
+
+                                <div [hidden]="!userEmail.errors?.pattern" class="invalid-feedback">Enter a valid email address
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="">Unique number</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="border-color: rgb(13, 141, 226);"
+                                        id="basic-addon1">@</span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Unique number" name="unique_no"
+                                    aria-describedby="basic-addon1" #userUnique="ngModel" [(ngModel)]="user.unique_no"
+                                    [ngClass]="{'is-invalid': userUnique.errors && userUnique.touched}" required>
+
+                                <div [hidden]="!userUnique.errors?.required" class="invalid-feedback">Unique/Matric
+                                    number field is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="">Firstname</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="border-color: rgb(13, 141, 226);"
+                                        id="basic-addon1"> <i class="fa fa-user" aria-hidden="true"></i> </span>
+                                </div>
+                                <input type="text" name="firstname" class="form-control" id="firstname"
+                                    placeholder="Firstname" #userFirstname="ngModel" [(ngModel)]="user.firstname"
+                                    [ngClass]="{'is-invalid': userFirstname.errors && userFirstname.touched}" required>
+
+                                <div [hidden]="!userFirstname.errors?.required" class="invalid-feedback">Firstname field
+                                    cannot be empty
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Lastname</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="border-color: rgb(13, 141, 226);"
+                                        id="basic-addon1"> <i class="fa fa-user" aria-hidden="true"></i> </span>
+                                </div>
+                                <input type="text" name="lastname" class="form-control" id="lastname"
+                                    placeholder="Lastname" #userLastname="ngModel" [(ngModel)]="user.lastname"
+                                    [ngClass]="{'is-invalid': userLastname.errors && userLastname.touched}" required>
+
+                                <div [hidden]="!userLastname.errors?.required" class="invalid-feedback">Lastname field
+                                    cannot be empty
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Password</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="border-color: rgb(13, 141, 226);"
+                                        id="basic-addon1"> <i class="fa fa-key" aria-hidden="true"></i></span>
+                                </div>
+                                <input type="password" name="password" class="form-control" id="password"
+                                    placeholder="Password??" #userPassword="ngModel" [(ngModel)]="user.password" required
+                                    minlength="6" [ngClass]="{'is-invalid': userPassword.errors && userPassword.touched}">
+                                <div [hidden]="!userPassword.errors?.required" class="invalid-feedback">Password field
+                                    cannot be
+                                    empty
+                                </div>
+                                <div [hidden]="!userPassword.errors?.minlength" class="invalid-feedback">Password must not
+                                    be
+                                    less than 6 characters</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Password</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="border-color: rgb(13, 141, 226);"
+                                        id="basic-addon1"> <i class="fa fa-key" aria-hidden="true"></i></span>
+                                </div>
+                                <input type="password" name="confirm_password" class="form-control" id="confirm_password"
+                                    placeholder="confirm Password" #userConPass="ngModel" [(ngModel)]="user.confirm_password" required
+                                    minlength="6" [ngClass]="{'is-invalid': userConPass.errors && userConPass.touched}">
+                                <div [hidden]="!userConPass.errors?.required" class="invalid-feedback">Confirm Password field
+                                    cannot be
+                                    empty
+                                </div>
+                                <div [hidden]="!userConPass.errors?.minlength" class="invalid-feedback">Password must not
+                                    be less than 6 characters</div>
+                                <div [hidden]="!userConPass.errors?.mustMatch" class="invalid-feedback">Password must Match</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-6 text-right text-right"><a [routerLink]="['/signin']">Already have an account?</a>
+                        </p>
+                        <p class="col-md-6 text-right" style="text-align:center;"><button
+                                class="text-right btn btn-outline-dark" [disabled]="!signup.form.valid || isLoading">Sign up
+                                <div class="spinner-grow spinner-grow-sm text-info" role="status" [hidden]="!isLoading">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </button></p>
+                    </div>
+                </form>
+                <hr>
+                
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <a class="btn btn-outline-dark" href="#" role="button" style="text-transform:none">
+                            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                            Login with Google
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<!-- <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+</form> -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">PaveWay</a>
+    <div class="d-flex order-lg-1 ml-auto pr-2">
+        <ul class="navbar-nav flex-row">
+            <li class="nav-item mx-2 mx-lg-0 px-2" *ngIf="!isLoggedIn">
+                <a class="nav-link" href="#"  [routerLink]="['signin']">LOGIN</a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link" [routerLink]="['signup']" *ngIf="!isLoggedIn">REGISTER</a>
+            </li>
+        </ul>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="navbarSupportedContent1">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item px-2 active">
+                <a class="nav-link" href="#">HOME</a>
+            </li>
+            <li class="nav-item px-2">
+                <a class="nav-link" href="">ABOUT</a>
+            </li>
+            <li class="nav-item px-2 dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Join
+                </a>
+                <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Student</a>
+                    <a class="dropdown-item" href="#">Lecturer</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Sponsorship</a>
+                </div>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+
+
+<!-- LOGIN AND REGISTRATION MODAL -->
+
+<!-- <div class="modal fade login" id="loginModal">
+        <div class="modal-dialog login animated">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Login with</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="box">
+                       <div class="content">
+                          <div class="social">
+                              <a class="circle github" href="#">
+                                  <i class="fa fa-github fa-fw"></i>
+                              </a>
+                              <a id="google_login" class="circle google" href="#">
+                                  <i class="fa fa-google-plus fa-fw"></i>
+                              </a>
+                              <a id="facebook_login" class="circle facebook" href="#">
+                                  <i class="fa fa-facebook fa-fw"></i>
+                              </a>
+                          </div>
+                          <div class="division">
+                              <div class="line l"></div>
+                                <span>or</span>
+                              <div class="line r"></div>
+                          </div>
+                          <div class="error"></div>
+                          <div class="form loginBox">
+                              <form method="" action="" accept-charset="UTF-8">
+                              <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                              <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                              <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                              </form>
+                          </div>
+                       </div>
+                  </div>
+                  <div class="box">
+                      <div class="content registerBox" style="display:none;">
+                       <div class="form">
+                          <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                          <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                          <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                          <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                          <input class="btn btn-default btn-register" type="button" value="Create account" name="commit">
+                          </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <div class="forgot login-footer">
+                      <span>Looking to
+                           <a href="javascript: showRegisterForm();">create an account</a>
+                      ?</span>
+                  </div>
+                  <div class="forgot register-footer" style="display:none">
+                       <span>Already have an account?</span>
+                       <a href="javascript: showLoginForm();">Login</a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div> -->
+
+    
