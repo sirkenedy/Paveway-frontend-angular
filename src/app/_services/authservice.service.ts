@@ -39,6 +39,21 @@ export class AuthserviceService {
     }));
   }
 
+  login(body:User) {
+    return this.http.post<User>(this.endpoint+'auth/signup', body)
+    .pipe(map(user => {
+      if (user && user.token) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        console.log(user);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+    }
+
+    return user;
+
+    }));
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
