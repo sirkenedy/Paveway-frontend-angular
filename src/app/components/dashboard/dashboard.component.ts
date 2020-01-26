@@ -18,12 +18,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.auth.getUserValue().pipe().subscribe(user => { 
-      this.currentuser = user;
-      console.log(user);
-  }, err => { 
-      console.log(err);
-    });
+  //   this.auth.getUserValue().pipe().subscribe(user => { 
+  //     this.currentuser = user;
+
+  // }, err => { 
+  //     console.log(err);
+  //   });
   }
 
 }

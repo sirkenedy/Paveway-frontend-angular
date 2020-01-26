@@ -41,7 +41,7 @@ export class httpSetHeaders implements HttpInterceptor {
         return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    console.log('event', event);
+                    // console.log('event', event);
                 }
                 return event;
             }),
@@ -56,9 +56,8 @@ export class httpSetHeaders implements HttpInterceptor {
                 let data = {};
                 data = {
                     domain: error.status,
-                    message: error.error
+                    message: error.error.error
                 };
-                console.log(data);
                 return throwError(error);
             }));
     }

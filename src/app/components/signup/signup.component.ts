@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthserviceService} from '../../_services';
 import { User, Role } from '../../_models';
 
@@ -8,9 +9,11 @@ import { User, Role } from '../../_models';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit,OnDestroy {
 
+  private subscription : Subscription;
   user : User;
+  returnUrl: string;
   userCat : string = "student";
   category : {
     student : string,
@@ -20,9 +23,16 @@ export class SignupComponent implements OnInit {
   isLoading : boolean;
   @ViewChild("signup", {static:false}) form: any
 
-  constructor(private router: Router, private auth:AuthserviceService) { }
+  constructor(
+    private router: Router, 
+    private auth:AuthserviceService,
+    private route: ActivatedRoute,
+    ) 
+    
+    { }
 
   ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     this.isLoading = false;
     this.user = {
       "email" : "",
@@ -72,17 +82,21 @@ export class SignupComponent implements OnInit {
     }else {
       console.log(value);
       this.isLoading = true;
-      this.auth.register(value).pipe().subscribe(user => { 
+      this.subscription = this.auth.register(value).pipe().subscribe(user => { 
         this.user = user; 
         this.isLoading=false;
         console.log(user);
-        this.router.navigate(['dashboard']);
+        this.router.navigate([this.returnUrl]);
     }, err => { 
       console.log("Login was not Successful"); 
       console.log(err.error);
       this.isLoading = false;
       });
     }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
