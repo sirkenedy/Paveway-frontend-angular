@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { SigninComponent } from './components/signin/signin.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HomeComponent } from './components/home/home.component';
+import { 
+  NavbarComponent, 
+  FooterComponent, 
+  SignupComponent, 
+  SigninComponent, 
+  DashboardComponent, 
+  HomeComponent 
+} from './components';
 import {httpSetHeaders} from './Interceptors'
 
 @NgModule({
@@ -37,7 +39,7 @@ import {httpSetHeaders} from './Interceptors'
     HttpClientModule,
     FormsModule,
     NgbModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: httpSetHeaders, multi: true},

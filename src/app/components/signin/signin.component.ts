@@ -57,7 +57,7 @@ export class SigninComponent implements OnInit, OnDestroy  {
       .subscribe(
         data => {
           this.flashMessage.show('You are now logged in', {
-            cssClass:'alert-success', timeout: 4000
+            cssClass:'alert-success', timeout: 4000, dismissible:true,
           });
           this.router.navigate([this.returnUrl]);
         },
@@ -69,7 +69,9 @@ export class SigninComponent implements OnInit, OnDestroy  {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }
