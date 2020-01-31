@@ -6,13 +6,20 @@ import { Role } from './_models'
 
 
 const routes: Routes = [
-  {path : '', component : HomeComponent},
-  {path : 'signup', component : SignupComponent},
-  {path : 'signin', component : SigninComponent},
-  { path : 'dashboard', 
-    component : DashboardComponent, 
-    canActivate : [AuthGuard], 
-    data : {roles : [Role.Student]}
+  { path: '', component: HomeComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'signin', component: SigninComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Student] }
+  },
+  {
+    path: 'student',
+    canActivate : [AuthGuard],
+    data: { roles: [Role.Student] },
+    loadChildren: () => import('./students/students.module').then(m => m.StudentsModule)
   },
 ];
 
